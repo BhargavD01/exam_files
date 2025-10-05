@@ -1,0 +1,45 @@
+[debug] [2025-09-25T16:44:26.993Z] ----------------------------------------------------------------------
+[debug] [2025-09-25T16:44:27.000Z] Command:       /opt/homebrew/Cellar/node/24.8.0/bin/node /opt/homebrew/bin/firebase serve --only hosting
+[debug] [2025-09-25T16:44:27.000Z] CLI Version:   14.17.0
+[debug] [2025-09-25T16:44:27.000Z] Platform:      darwin
+[debug] [2025-09-25T16:44:27.000Z] Node Version:  v24.8.0
+[debug] [2025-09-25T16:44:27.000Z] Time:          Thu Sep 25 2025 22:14:27 GMT+0530 (India Standard Time)
+[debug] [2025-09-25T16:44:27.000Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-09-25T16:44:27.116Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-09-25T16:44:27.117Z] > authorizing via signed-in user (bhargavdhole@gmail.com)
+[debug] [2025-09-25T16:44:27.117Z] [iam] checking project tic-tac-toe-35835 for permissions ["firebase.projects.get"]
+[debug] [2025-09-25T16:44:27.117Z] Checked if tokens are valid: true, expires at: 1758820932500
+[debug] [2025-09-25T16:44:27.117Z] Checked if tokens are valid: true, expires at: 1758820932500
+[debug] [2025-09-25T16:44:27.117Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/tic-tac-toe-35835:testIamPermissions [none]
+[debug] [2025-09-25T16:44:27.117Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/tic-tac-toe-35835:testIamPermissions x-goog-quota-user=projects/tic-tac-toe-35835
+[debug] [2025-09-25T16:44:27.117Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/tic-tac-toe-35835:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-09-25T16:44:28.538Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/tic-tac-toe-35835:testIamPermissions 200
+[debug] [2025-09-25T16:44:28.539Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/tic-tac-toe-35835:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-09-25T16:44:28.540Z] Checked if tokens are valid: true, expires at: 1758820932500
+[debug] [2025-09-25T16:44:28.540Z] Checked if tokens are valid: true, expires at: 1758820932500
+[debug] [2025-09-25T16:44:28.540Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/tic-tac-toe-35835 [none]
+[debug] [2025-09-25T16:44:28.905Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/tic-tac-toe-35835 200
+[debug] [2025-09-25T16:44:28.905Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/tic-tac-toe-35835 {"projectNumber":"269585616685","projectId":"tic-tac-toe-35835","lifecycleState":"ACTIVE","name":"tic-tac-toe","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2025-09-25T15:51:14.867501Z"}
+[debug] [2025-09-25T16:44:28.908Z] Checked if tokens are valid: true, expires at: 1758820932500
+[debug] [2025-09-25T16:44:28.908Z] Checked if tokens are valid: true, expires at: 1758820932500
+[debug] [2025-09-25T16:44:28.909Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/tic-tac-toe-35835/sites 
+[debug] [2025-09-25T16:44:30.047Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/tic-tac-toe-35835/sites 200
+[debug] [2025-09-25T16:44:30.047Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/tic-tac-toe-35835/sites {"sites":[{"name":"projects/tic-tac-toe-35835/sites/tic-tac-toe-35835","defaultUrl":"https://tic-tac-toe-35835.web.app","type":"DEFAULT_SITE"}]}
+[debug] [2025-09-25T16:44:30.048Z] Checked if tokens are valid: true, expires at: 1758820932500
+[debug] [2025-09-25T16:44:30.048Z] Checked if tokens are valid: true, expires at: 1758820932500
+[debug] [2025-09-25T16:44:30.048Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/tic-tac-toe-35835/webApps/-/config [none]
+[debug] [2025-09-25T16:44:30.951Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/tic-tac-toe-35835/webApps/-/config 200
+[debug] [2025-09-25T16:44:30.952Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/tic-tac-toe-35835/webApps/-/config {"projectId":"tic-tac-toe-35835","appId":"1:269585616685:web:1cd73a9c7a541060314da4","storageBucket":"tic-tac-toe-35835.firebasestorage.app","apiKey":"AIzaSyAi-r4bbLSjI7hUdWTxHwkiHKfyO491abI","authDomain":"tic-tac-toe-35835.firebaseapp.com","messagingSenderId":"269585616685","measurementId":"G-LCLFCCBLQT"}
+[debug] [2025-09-25T16:44:30.962Z] Checked if tokens are valid: true, expires at: 1758820932500
+[debug] [2025-09-25T16:44:30.963Z] Checked if tokens are valid: true, expires at: 1758820932500
+[debug] [2025-09-25T16:44:30.963Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/tic-tac-toe-35835 [none]
+[debug] [2025-09-25T16:44:31.367Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/tic-tac-toe-35835 200
+[debug] [2025-09-25T16:44:31.367Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/tic-tac-toe-35835 {"projectId":"tic-tac-toe-35835","projectNumber":"269585616685","displayName":"tic-tac-toe","name":"projects/tic-tac-toe-35835","resources":{"hostingSite":"tic-tac-toe-35835"},"state":"ACTIVE","etag":"1_886120ff-2959-40b6-99cb-2abbc5db521b"}
+[info] i  hosting[tic-tac-toe-35835]: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] ✔  hosting[tic-tac-toe-35835]: Local server: http://localhost:5002 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5002\u001b[22m\u001b[24m"}}
+[info] i  hosting: ::1 - - [25/Sep/2025:16:44:39 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [25/Sep/2025:16:44:39 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15\""}}
+[info] i  hosting: ::1 - - [25/Sep/2025:16:44:39 +0000] "GET /favicon.ico HTTP/1.1" 304 - "http://localhost:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [25/Sep/2025:16:44:39 +0000] \"GET /favicon.ico HTTP/1.1\" 304 - \"http://localhost:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15\""}}
+[info] i  hosting: ::1 - - [25/Sep/2025:16:44:39 +0000] "GET /style.css HTTP/1.1" 200 - "http://localhost:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [25/Sep/2025:16:44:39 +0000] \"GET /style.css HTTP/1.1\" 200 - \"http://localhost:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15\""}}
+[info] i  hosting: ::1 - - [25/Sep/2025:16:44:39 +0000] "GET /script.js HTTP/1.1" 200 - "http://localhost:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [25/Sep/2025:16:44:39 +0000] \"GET /script.js HTTP/1.1\" 200 - \"http://localhost:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15\""}}
+[info] i  hosting: ::1 - - [25/Sep/2025:16:44:47 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15" {"metadata":{"emulator":{"name":"hosting"},"message":"::1 - - [25/Sep/2025:16:44:47 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.1.1 Safari/605.1.15\""}}

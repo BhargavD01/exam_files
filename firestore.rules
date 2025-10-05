@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users collection: each user can read/write only their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Lobbies collection: users can create their own lobby and read others
+    match /lobbies/{lobbyId} {
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.uid;
+      allow read: if request.auth != null;
+      allow update, delete: if false; // only server functions can update
+    }
+
+    // Games collection: only participants can read, all writes go through Cloud Functions
+    match /games/{gameId} {
+      allow read: if request.auth != null &&
+                  (request.auth.uid == resource.data.playerX || request.auth.uid == resource.data.playerO);
+      allow create, update, delete: if false; // only server functions can write
+    }
+
+    // Moves subcollection: only participants can read
+    match /games/{gameId}/moves/{moveId} {
+      allow read: if request.auth != null &&
+                  (request.auth.uid == get(/databases/$(database)/documents/games/$(gameId)).data.playerX ||
+                   request.auth.uid == get(/databases/$(database)/documents/games/$(gameId)).data.playerO);
+      allow write: if false; // only Cloud Functions can write moves
+    }
+  }
+}

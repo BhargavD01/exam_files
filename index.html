@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe Pro - Premium Gaming</title>
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Auth Screen -->
+        <div id="authScreen" class="screen">
+            <h1>🎮 Tic Tac Toe Pro</h1>
+            <div class="auth-form">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button id="loginBtn">Login</button>
+                <button id="signupBtn">Sign Up</button>
+                <div id="authError" class="error-message hidden"></div>
+            </div>
+        </div>
+
+        <!-- Main Menu Screen -->
+        <div id="mainMenuScreen" class="screen hidden">
+            <div class="header">
+                <h1>Tic Tac Toe Pro</h1>
+                <div class="user-info">
+                    <span id="userNameDisplay"></span>
+                    <div class="coins">🪙 <span id="userCoins">0</span></div>
+                </div>
+            </div>
+            <div class="menu-grid">
+                <button class="menu-btn" id="quickPlayBtn">
+                    <div class="menu-icon">🤖</div>
+                    <div class="menu-text">AI Battle</div>
+                </button>
+                <button class="menu-btn" id="multiplayerBtn">
+                    <div class="menu-icon">👥</div>
+                    <div class="menu-text">Online Play</div>
+                </button>
+                <button class="menu-btn" id="profileBtn">
+                    <div class="menu-icon">👤</div>
+                    <div class="menu-text">My Profile</div>
+                </button>
+                <button class="menu-btn" id="leaderboardBtn">
+                    <div class="menu-icon">🏆</div>
+                    <div class="menu-text">Leaderboard</div>
+                </button>
+                <button class="menu-btn" id="storeBtn">
+                    <div class="menu-icon">🏪</div>
+                    <div class="menu-text">Theme Store</div>
+                </button>
+                <button class="menu-btn" id="achievementsBtn">
+                    <div class="menu-icon">🎯</div>
+                    <div class="menu-text">Achievements</div>
+                </button>
+                <button class="menu-btn" id="topupBtn">
+                    <div class="menu-icon">💰</div>
+                    <div class="menu-text">Top Up Coins</div>
+                </button>
+                <button class="menu-btn" id="logoutBtn">
+                    <div class="menu-icon">🚪</div>
+                    <div class="menu-text">Logout</div>
+                </button>
+            </div>
+        </div>
+
+        <!-- AI Difficulty Screen -->
+        <div id="aiDifficultyScreen" class="screen hidden">
+            <h2>Select AI Difficulty</h2>
+            <div class="difficulty-grid">
+                <button class="difficulty-btn" data-difficulty="easy">
+                    <div class="difficulty-header">Easy</div>
+                    <div class="difficulty-desc">Random moves</div>
+                    <div class="difficulty-reward">+5 XP</div>
+                </button>
+                <button class="difficulty-btn" data-difficulty="medium">
+                    <div class="difficulty-header">Medium</div>
+                    <div class="difficulty-desc">Basic strategy</div>
+                    <div class="difficulty-reward">+10 XP</div>
+                </button>
+                <button class="difficulty-btn" data-difficulty="hard">
+                    <div class="difficulty-header">Hard</div>
+                    <div class="difficulty-desc">Advanced AI</div>
+                    <div class="difficulty-reward">+20 XP</div>
+                </button>
+                <button class="difficulty-btn" data-difficulty="impossible">
+                    <div class="difficulty-header">Impossible</div>
+                    <div class="difficulty-desc">Unbeatable</div>
+                    <div class="difficulty-reward">+50 XP</div>
+                </button>
+            </div>
+            <button id="backToMenuFromAI" class="back-btn">← Back to Menu</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen hidden">
+            <div class="game-header">
+                <h2 id="gameTitle">AI Battle - Medium</h2>
+                <div id="gameStatus">Your turn (X)</div>
+                <div class="game-info">
+                    <div class="timer" id="gameTimer">⏱️ 30s</div>
+                    <div class="coins">🪙 <span id="gameCoins">0</span></div>
+                </div>
+            </div>
+            <div class="board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+            <div class="game-controls">
+                <button id="leaveGameBtn">Leave Game</button>
+                <button id="rematchBtn" class="hidden">Rematch</button>
+            </div>
+        </div>
+
+        <!-- Profile Screen -->
+        <div id="profileScreen" class="screen hidden">
+            <div class="profile-header">
+                <div class="profile-avatar">🎮</div>
+                <h2 id="profileName"></h2>
+                <div class="level-badge">
+                    <span>Level</span>
+                    <span id="userLevel">1</span>
+                </div>
+                <div class="xp-bar">
+                    <div class="xp-fill" id="xpFill"></div>
+                </div>
+                <div class="xp-text">XP: <span id="userXP">0</span>/<span id="nextLevelXP">100</span></div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="winsCount">0</div>
+                    <div class="stat-label">Wins</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="lossesCount">0</div>
+                    <div class="stat-label">Losses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="drawsCount">0</div>
+                    <div class="stat-label">Draws</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="winStreak">0</div>
+                    <div class="stat-label">Win Streak</div>
+                </div>
+            </div>
+            <div class="profile-coins">
+                <h3>Game Coins: <span id="profileCoins">0</span> 🪙</h3>
+            </div>
+            <button id="backToMenuFromProfile" class="back-btn">← Back to Menu</button>
+        </div>
+
+        <!-- Leaderboard Screen -->
+        <div id="leaderboardScreen" class="screen hidden">
+            <h2>🏆 Global Leaderboard</h2>
+            <div class="leaderboard-list" id="leaderboardList">
+                <!-- Leaderboard items will be populated by JS -->
+            </div>
+            <button id="backToMenuFromLeaderboard" class="back-btn">← Back to Menu</button>
+        </div>
+
+        <!-- Store Screen -->
+        <div id="storeScreen" class="screen hidden">
+            <h2>🏪 Theme Store</h2>
+            <div class="store-grid" id="storeGrid">
+                <!-- Store items will be populated by JS -->
+            </div>
+            <button id="backToMenuFromStore" class="back-btn">← Back to Menu</button>
+        </div>
+
+        <!-- Achievements Screen -->
+        <div id="achievementsScreen" class="screen hidden">
+            <h2>🎯 Achievements</h2>
+            <div class="achievements-grid" id="achievementsGrid">
+                <!-- Achievements will be populated by JS -->
+            </div>
+            <button id="backToMenuFromAchievements" class="back-btn">← Back to Menu</button>
+        </div>
+
+        <!-- Top Up Screen -->
+        <div id="topupScreen" class="screen hidden">
+            <h2>💰 Top Up Game Coins</h2>
+            <div class="topup-packages">
+                <div class="topup-package" data-coins="100">
+                    <div class="package-header">Starter Pack</div>
+                    <div class="package-coins">100 🪙</div>
+                    <div class="package-price">$0.99</div>
+                    <button class="buy-btn" onclick="purchaseCoins(100)">Buy Now</button>
+                </div>
+                <div class="topup-package" data-coins="500">
+                    <div class="package-header">Gamer Pack</div>
+                    <div class="package-coins">500 🪙</div>
+                    <div class="package-price">$3.99</div>
+                    <button class="buy-btn" onclick="purchaseCoins(500)">Buy Now</button>
+                </div>
+                <div class="topup-package" data-coins="1200">
+                    <div class="package-header">Pro Pack</div>
+                    <div class="package-coins">1,200 🪙</div>
+                    <div class="package-price">$7.99</div>
+                    <button class="buy-btn" onclick="purchaseCoins(1200)">Buy Now</button>
+                </div>
+                <div class="topup-package" data-coins="3000">
+                    <div class="package-header">Legend Pack</div>
+                    <div class="package-coins">3,000 🪙</div>
+                    <div class="package-price">$14.99</div>
+                    <button class="buy-btn" onclick="purchaseCoins(3000)">Buy Now</button>
+                </div>
+            </div>
+            <div class="demo-note">
+                💡 <strong>Demo Mode:</strong> Purchases are simulated for demonstration purposes.
+            </div>
+            <button id="backToMenuFromTopup" class="back-btn">← Back to Menu</button>
+        </div>
+    </div>
+
+    <!-- Firebase Config - Replace with your config -->
+    <script>
+        // TODO: Replace with your Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyAi-r4bbLSjI7hUdWTxHwkiHKfyO491abI",
+            authDomain: "tic-tac-toe-35835.firebaseapp.com",
+            projectId: "tic-tac-toe-35835",
+            storageBucket: "tic-tac-toe-35835.appspot.com",
+            messagingSenderId: "269585616685",
+            appId: "1:269585616685:web:1cd73a9c7a541060314da4",
+            measurementId: "G-LCLFCCBLQT"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
